@@ -59,6 +59,14 @@ public class Libro {
         this.autores = autores;
     }
     
+    public boolean AlreadyExist(Autor autor){
+     for(int i=0;i<this.autores.size();i++){
+         if(this.autores.get(i).getCedula()==autor.getCedula()){
+             return true;
+         }
+     }
+     return false;
+    }  
     
     
 }

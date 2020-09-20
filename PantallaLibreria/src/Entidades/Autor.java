@@ -65,5 +65,13 @@ public class Autor {
         this.librosEscritos = librosEscritos;
     }
     
+    public boolean alreadyExist(Libro libro){
+        for(int i=0;i<this.librosEscritos.size();i++){
+            if(this.librosEscritos.get(i).getIsbn().equals(libro.getIsbn())){
+                return true;
+            }                
+        }
+        return false;
+    }   
     
 }
