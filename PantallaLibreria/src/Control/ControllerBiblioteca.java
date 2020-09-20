@@ -42,9 +42,8 @@ public class ControllerBiblioteca {
             
             listaLibros.add(nuevoLibro);
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
     
     public boolean AgregarLibro(Libro nuevoLibro,Autor aut){
@@ -68,17 +67,39 @@ public class ControllerBiblioteca {
     }
     
     public boolean AsignarAutorALibro(Libro libro,Autor autor){
-        return true;
+        boolean alreadyExist=false;
+            if(BuscarAutor(autor.getCedula())!= null && BuscarLibro(libro.getIsbn())!=null){
+                alreadyExist=libro.AlreadyExist(autor);
+                if(autor.getEstado().equals("ACTIVO")&&alreadyExist!=true){
+                    libro.getAutores().add(autor);
+                    return true;
+                }
+            }
+        return false;
     }
     public double CalcularCostoTotal(){
-        return 0;
+        int total=0;
+        for(int i=0; i< this.listaLibros.size();i++){
+            total+= this.listaLibros.get(i).getCosto();
+        }
+        return total;
     }
     public boolean AgregarAutor(Autor nuevoAutor){
-        return true;
+        if(BuscarAutor(nuevoAutor.getCedula())!=null){
+            this.listaAutores.add(nuevoAutor);
+            return true;
+        }
+        return false;
     }
     public boolean AsignarLibroAutorA(Autor autor,Libro libro){
-      
-        return true;
+        Autor autorAux=BuscarAutor(autor.getCedula());
+            if(BuscarLibro(libro.getIsbn())!= null && autorAux!=null){
+                if(autorAux.alreadyExist(libro)!=true){
+                   BuscarAutor(autor.getCedula()).getLibrosEscritos().add(libro);
+                   return true;
+                }
+            }
+        return false;
     }
     public Autor BuscarAutor(int cedula){
         for(int i=0; i< listaAutores.size(); i++){
