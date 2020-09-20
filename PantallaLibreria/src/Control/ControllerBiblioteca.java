@@ -16,11 +16,6 @@ public class ControllerBiblioteca {
     private ArrayList<Libro> listaLibros;
     private ArrayList<Autor> listaAutores;
 
-    public ControllerBiblioteca(ArrayList<Libro> listaLibros, ArrayList<Autor> listaAutores) {
-        this.listaLibros = listaLibros;
-        this.listaAutores = listaAutores;
-    }
-
     public ControllerBiblioteca() {
         this.listaLibros = new ArrayList<>();
         this.listaAutores = new ArrayList<>();
@@ -44,6 +39,7 @@ public class ControllerBiblioteca {
     
     public boolean AgregarLibro(Libro nuevoLibro){
         if(BuscarLibro(nuevoLibro.getIsbn()) == null){
+            
             listaLibros.add(nuevoLibro);
             return true;
         }else{
@@ -51,9 +47,16 @@ public class ControllerBiblioteca {
         }
     }
     
-    public boolean AgregarLibro(Libro nuevoLibro,Autor autor){
-        return true;
+    public boolean AgregarLibro(Libro nuevoLibro,Autor aut){
+         if(BuscarAutor(aut.getCedula()) != null){
+            if(BuscarLibro(nuevoLibro.getIsbn()) == null){
+                aut.getLibrosEscritos().add(nuevoLibro);
+                return true;
+            }
+        }
+        return false;
     }
+ 
     
     public Libro BuscarLibro(String isbn){
         for(int i=0; i<listaLibros.size();i++){
@@ -74,6 +77,7 @@ public class ControllerBiblioteca {
         return true;
     }
     public boolean AsignarLibroAutorA(Autor autor,Libro libro){
+      
         return true;
     }
     public Autor BuscarAutor(int cedula){
@@ -84,24 +88,77 @@ public class ControllerBiblioteca {
     }
     return null;
     }
+    
     public double CalcularCostosLibrosDeUnAutor(int cedula){
-        return 0;
+        double costosLibro=0;
+        if(BuscarAutor(cedula)!= null){
+            for(int i=1; i<BuscarAutor(cedula).getLibrosEscritos().size(); i++){ 
+            costosLibro+=BuscarAutor(cedula).getLibrosEscritos().get(i).getCosto();
+            }
+        }
+        return costosLibro;
     }
+    
     public ArrayList LibrosDeUnAutor(Autor autor){
-        return null;
+       if(BuscarAutor(autor.getCedula()) != null){
+       return autor.getLibrosEscritos();
+       }else{
+       return null;
+       }
     }
     public ArrayList AutoresDeUnLibro(Libro libro){
-        return null;
+       if(BuscarLibro(libro.getIsbn()) != null){
+       return libro.getAutores();
+       }else{
+       return null;
+       }
     }
     public Autor AutorMasProductivo(){
-        return null;
+        int cantLibros;
+        Autor autoraux;
+        cantLibros=listaAutores.get(0).getLibrosEscritos().size();
+        autoraux=listaAutores.get(0);
+            for(int i=1; i<listaAutores.size(); i++){ 
+                if(listaAutores.get(i).getLibrosEscritos().size()>cantLibros){
+                    cantLibros=listaAutores.get(i).getLibrosEscritos().size();
+                    autoraux=listaAutores.get(i);
+                }
+            }        
+        return autoraux;
     }
-    public Autor MejorAutorDeUnLibro(Libro libro){
-        return null;
-    }
-    public Autor AutorQueMasGana(double porciento){
-        return null;
-    }
-            
     
+    private Autor AutorMasProductivo(ArrayList<Autor> autores){
+        int cantLibros;
+        Autor autoraux;
+        cantLibros=autores.get(0).getLibrosEscritos().size();
+        autoraux=autores.get(0);
+            for(int i=1; i<autores.size(); i++){ 
+                if(autores.get(i).getLibrosEscritos().size()>cantLibros){
+                    cantLibros=autores.get(i).getLibrosEscritos().size();
+                    autoraux=autores.get(i);
+                }
+            }        
+        return autoraux;
+    }
+    
+    public Autor MejorAutorDeUnLibro(Libro libro){
+        if(BuscarLibro(libro.getIsbn()) != null){
+            return AutorMasProductivo(BuscarLibro(libro.getIsbn()).getAutores());
+        }
+        return null;
+    }
+    
+    public Autor AutorQueMasGana(double porciento){ 
+        double ingreso;
+        Autor autoraux;
+        ingreso=CalcularCostosLibrosDeUnAutor(listaAutores.get(0).getCedula());
+        autoraux=listaAutores.get(0);
+        for(int i=1; i< listaAutores.size(); i++){
+            if(CalcularCostosLibrosDeUnAutor(listaAutores.get(i).getCedula())>ingreso){
+            ingreso=CalcularCostosLibrosDeUnAutor(listaAutores.get(i).getCedula());
+            autoraux=listaAutores.get(i);
+            }
+        }
+        return autoraux;
+    }
 }

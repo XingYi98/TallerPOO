@@ -5,6 +5,8 @@
  */
 package Entidades;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author JANET CHEN Y DANIEL FLORIDO
@@ -13,6 +15,7 @@ public class Libro {
     private String isbn;
     private String titulo;
     private double costo;
+    private ArrayList<Autor> autores;
 
     public Libro() {
     }
@@ -21,6 +24,7 @@ public class Libro {
         this.isbn = isbn="";
         this.titulo = titulo;
         this.costo = costo;
+        this.autores = new ArrayList<>();
     }
 
     public String getIsbn() {
@@ -46,6 +50,15 @@ public class Libro {
     public void setCosto(double costo) {
         this.costo = costo;
     }
+
+    public ArrayList<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(ArrayList<Autor> autores) {
+        this.autores = autores;
+    }
+    
     
     
 }

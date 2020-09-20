@@ -5,6 +5,8 @@
  */
 package Entidades;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author JANET CHEN Y DANIEL FLORIDO
@@ -13,14 +15,17 @@ public class Autor {
     private String nombre;
     private int cedula;
     private String estado;
+    private ArrayList<Libro> librosEscritos;
 
     public Autor() {
     }
 
+    
     public Autor(String nombre, int cedula, String estado) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.estado = estado;
+        this.librosEscritos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -49,6 +54,15 @@ public class Autor {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public ArrayList<Libro> getLibrosEscritos() {
+        return librosEscritos;
+        
+    }
+
+    public void setLibrosEscritos(ArrayList<Libro> librosEscritos) {
+        this.librosEscritos = librosEscritos;
     }
     
     
