@@ -20,7 +20,6 @@ public class Autor {
     public Autor() {
     }
 
-    
     public Autor(String nombre, int cedula, String estado) {
         this.nombre = nombre;
         this.cedula = cedula;

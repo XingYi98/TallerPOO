@@ -39,57 +39,58 @@ public class PantallaLibreria {
         
         do{
             opcion=imprimirMenu();
+           
             switch(opcion){
                 case 1:
                     //boolean AgregarLibro(Libro nuevoLibro)
-                    System.out.println("AGREGAR NUEVO LIBRO");
+                    System.out.println("\nAGREGAR NUEVO LIBRO");
                     System.out.println("Se agrego nuevo libro?: " + pantallaLibreria.controlBiblioteca.AgregarLibro(libro2));
                     System.out.println("Se agrego nuevo libro?: " + pantallaLibreria.controlBiblioteca.AgregarLibro(libro1));
                     System.out.println("Libro con isbn repetido, se agrego?: " + pantallaLibreria.controlBiblioteca.AgregarLibro(libro1) + "\n");
                     break;
                 case 2:
                     //boolean AgregarAutor(Autor nuevoAutor)
-                    System.out.println("AGREGAR NUEVO AUTOR");
+                    System.out.println("\nAGREGAR NUEVO AUTOR");
                     System.out.println("Se agrego nuevo autor?: " + pantallaLibreria.controlBiblioteca.AgregarAutor(aut1));
                     System.out.println("Se agrego nuevo autor?: " + pantallaLibreria.controlBiblioteca.AgregarAutor(aut2));
                     System.out.println("Autor repetido, se agrego?: " + pantallaLibreria.controlBiblioteca.AgregarAutor(aut2)+ "\n");
                     break;
                 case 3:
                     //boolean AgregarLibro(Libro nuevoLibro,Autor aut)
-                    System.out.println("AGREGAR LIBRO NUEVO A AUTOR EXISTENTE");
+                    System.out.println("\nAGREGAR LIBRO NUEVO A AUTOR EXISTENTE");
                     System.out.println("Se agrego libro nuevo?: " + pantallaLibreria.controlBiblioteca.AgregarLibro(libro3, aut1));
                     System.out.println("Libro en la lista de libro, se agrego?: " + pantallaLibreria.controlBiblioteca.AgregarLibro(libro1, aut1));
                     break;    
                 case 4:
                     //Libro BuscarLibro(String isbn)
-                    System.out.println("BUSCAR LIBRO");
+                    System.out.println("\nBUSCAR LIBRO");
                     System.out.println("Libro encontrado?: " + pantallaLibreria.controlBiblioteca.BuscarLibro(libro1.getIsbn()).getTitulo() + "\n");
                     break;
                 case 5:
                     //boolean AsignarAutorALibro(Libro libro,Autor autor)
-                    System.out.println("ASIGNAR AUTOR EXISTENTE A LIBRO EXISTENTE");
+                    System.out.println("\nASIGNAR AUTOR EXISTENTE A LIBRO EXISTENTE");
                     System.out.println("Libro en la lista de libro, se agrego?: " + pantallaLibreria.controlBiblioteca.AsignarAutorALibro(libro1, aut1));
                     System.out.println("Libro en la lista de libro, se agrego?: " + pantallaLibreria.controlBiblioteca.AsignarAutorALibro(libro1, aut2) + "\n");
                     break;
                 case 6:
                     //double CalcularCostoTotal()
-                    System.out.println("COSTO TOTAL DE TODO LOS LIBROS");
+                    System.out.println("\nCOSTO TOTAL DE TODO LOS LIBROS");
                     System.out.println("Costo total: " + pantallaLibreria.controlBiblioteca.CalcularCostoTotal() + "\n");
                     break;
                 case 7:
                     //boolean AsignarLibroAutorA(Autor autor,Libro libro)
-                    System.out.println("ASIGNAR LIBRO EXISTENTE A AUTOR EXISTENTE");
+                    System.out.println("\nASIGNAR LIBRO EXISTENTE A AUTOR EXISTENTE");
                     System.out.println("Libro en la lista de libro, se agrego?: " + pantallaLibreria.controlBiblioteca.AsignarLibroAutorA(aut1, libro1));
                     System.out.println("Libro en la lista de libro, se agrego?: " + pantallaLibreria.controlBiblioteca.AsignarLibroAutorA(aut2, libro1) + "\n");
                     break;
                 case 8:
                     //Autor BuscarAutor(int cedula)
-                    System.out.println("BUSCAR AUTOR");
+                    System.out.println("\nBUSCAR AUTOR");
                     System.out.println("Autor encontrado: " + pantallaLibreria.controlBiblioteca.BuscarAutor(aut1.getCedula()).getNombre() + "\n");
                     break;
                 case 9:
                     //double CalcularCostosLibrosDeUnAutor(int cedula)
-                    System.out.println("COSTO TOTAL DE LIBROS DEL AUTOR 1");
+                    System.out.println("\nCOSTO TOTAL DE LIBROS DEL AUTOR 1");
                     System.out.println("Costo total: " + pantallaLibreria.controlBiblioteca.CalcularCostosLibrosDeUnAutor(aut1.getCedula()) + "\n");
                     break;
                 case 10:
@@ -100,17 +101,17 @@ public class PantallaLibreria {
                     break;
                 case 12:
                     //Autor AutorMasProductivo()
-                    System.out.println("AUTOR MAS PRODUCTIVO");
+                    System.out.println("\nAUTOR MAS PRODUCTIVO");
                     System.out.println("Autor mas productivo: " + pantallaLibreria.controlBiblioteca.AutorMasProductivo().getNombre() + "\n");
                     break;
                 case 13:
                     //Autor MejorAutorDeUnLibro(Libro libro)
-                    System.out.println("MEJOR AUTOR DE UN LIBRO");
+                    System.out.println("\nMEJOR AUTOR DE UN LIBRO");
                     System.out.println("Mejor autor de un libro: " + pantallaLibreria.controlBiblioteca.MejorAutorDeUnLibro(libro1).getNombre() + "\n");
                     break;
                 case 14:
                     //Autor AutorQueMasGana()
-                    System.out.println("AUTOR QUE MAS GANA");
+                    System.out.println("\nAUTOR QUE MAS GANA");
                     System.out.println("Autor que mas gana: " + pantallaLibreria.controlBiblioteca.AutorQueMasGana().getNombre());
                     break; 
                 case 15:
@@ -120,9 +121,10 @@ public class PantallaLibreria {
                     break;
             }
             if(opcion != 15){
-            System.out.println("Desea ver el menu de nuevo s/n");
+            System.out.println("\nDesea ver el menu de nuevo s/n");
             seguir= sc.nextLine();
-            if("n1".equals(seguir)){
+            System.out.println("\n");
+            if("n".equals(seguir)){
                 break;
             }
             }
@@ -153,4 +155,6 @@ public class PantallaLibreria {
         eleccion= sc.nextInt();
         return eleccion;
     }  
+    
+    
 }
