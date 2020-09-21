@@ -36,10 +36,9 @@ public class ControllerBiblioteca {
     public void setListaAutores(ArrayList<Autor> listaAutores) {
         this.listaAutores = listaAutores;
     }
-    
+   
     public boolean AgregarLibro(Libro nuevoLibro){
         if(BuscarLibro(nuevoLibro.getIsbn()) == null){
-            
             listaLibros.add(nuevoLibro);
             return true;
         }
@@ -85,7 +84,7 @@ public class ControllerBiblioteca {
         return total;
     }
     public boolean AgregarAutor(Autor nuevoAutor){
-        if(BuscarAutor(nuevoAutor.getCedula())!=null){
+        if(BuscarAutor(nuevoAutor.getCedula())==null){
             this.listaAutores.add(nuevoAutor);
             return true;
         }
@@ -134,6 +133,8 @@ public class ControllerBiblioteca {
        return null;
        }
     }
+   
+    
     public Autor AutorMasProductivo(){
         int cantLibros;
         Autor autoraux;
@@ -150,6 +151,7 @@ public class ControllerBiblioteca {
     
     private Autor AutorMasProductivo(ArrayList<Autor> autores){
         int cantLibros;
+        int j=0;
         Autor autoraux;
         cantLibros=autores.get(0).getLibrosEscritos().size();
         autoraux=autores.get(0);
@@ -163,13 +165,15 @@ public class ControllerBiblioteca {
     }
     
     public Autor MejorAutorDeUnLibro(Libro libro){
+        Autor aut;
         if(BuscarLibro(libro.getIsbn()) != null){
-            return AutorMasProductivo(BuscarLibro(libro.getIsbn()).getAutores());
+            aut = AutorMasProductivo(BuscarLibro(libro.getIsbn()).getAutores());
+            return aut;
         }
         return null;
     }
     
-    public Autor AutorQueMasGana(double porciento){ 
+    public Autor AutorQueMasGana(){ 
         double ingreso;
         Autor autoraux;
         ingreso=CalcularCostosLibrosDeUnAutor(listaAutores.get(0).getCedula());

@@ -21,7 +21,7 @@ public class Libro {
     }
 
     public Libro(String isbn, String titulo, double costo) {
-        this.isbn = isbn="";
+        this.isbn = isbn;
         this.titulo = titulo;
         this.costo = costo;
         this.autores = new ArrayList<>();
