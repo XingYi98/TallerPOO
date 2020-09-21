@@ -48,6 +48,8 @@ public class ControllerBiblioteca {
     public boolean AgregarLibro(Libro nuevoLibro,Autor aut){
          if(BuscarAutor(aut.getCedula()) != null){
             if(BuscarLibro(nuevoLibro.getIsbn()) == null){
+                listaLibros.add(nuevoLibro);
+                nuevoLibro.getAutores().add(aut);
                 aut.getLibrosEscritos().add(nuevoLibro);
                 return true;
             }
@@ -110,7 +112,7 @@ public class ControllerBiblioteca {
     }
     
     public double CalcularCostosLibrosDeUnAutor(int cedula){
-        double costosLibro=0;
+        double costosLibro=0.0;
         if(BuscarAutor(cedula)!= null){
             for(int i=1; i<BuscarAutor(cedula).getLibrosEscritos().size(); i++){ 
             costosLibro+=BuscarAutor(cedula).getLibrosEscritos().get(i).getCosto();
