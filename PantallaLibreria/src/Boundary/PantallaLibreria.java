@@ -67,7 +67,7 @@ public class PantallaLibreria {
                     System.out.println("\nAGREGAR LIBRO NUEVO A AUTOR EXISTENTE");
                     Libro libro1 = infoLibro();
                     Autor autor1 = infoAutor();
-                    if(pantallaLibreria.controlBiblioteca.AgregarLibro(libro1, autor1)){
+                    if(pantallaLibreria.controlBiblioteca.AgregarLibro(libro1, autor1) == true){
                         System.out.println("\nSe agrego nuevo libro correctamente");
                         imprimirLibro(libro1);
                         System.out.println("\nCon autor");
@@ -95,17 +95,18 @@ public class PantallaLibreria {
                     
                 case 5:
                     //boolean AsignarAutorALibro(Libro libro,Autor autor)
-                    System.out.println("\nASIGNAR AUTOR EXISTENTE A LIBRO EXISTENTE");
+                    System.out.println("\nASIGNAR AUTOR EXISTENTE A LIBRO EXISTENTE Y VICEVERSA");
                     Autor autor3 = infoAutor();
                     Libro libro3 = infoLibro();
-                    if(pantallaLibreria.controlBiblioteca.AsignarAutorALibro(libro3, autor3)){
-                        System.out.println("Se asignado correctamente el autor");
-                        imprimirAutor(autor3);
-                        System.out.println("Al libro");
-                        imprimirLibro(libro3);
+                    if(pantallaLibreria.controlBiblioteca.AsignarAutorALibro(libro3, autor3) == true){
+                        if(pantallaLibreria.controlBiblioteca.AsignarLibroAutorA(autor3, libro3) == true){
+                            System.out.println("\nSe asigno correctamente");
+                            imprimirListaLibros(autor3.getLibrosEscritos());
+                            imprimirListaAutores(libro3.getAutores());
+                        }
                     }else{
                         System.out.println("ERROR, no se logro asignar autor a libro");
-                    }
+                    }   
                     break;
                     
                 case 6:
@@ -119,23 +120,8 @@ public class PantallaLibreria {
                         System.out.println("ERROR, no se logro calcular el costo total de los libros"); 
                     }
                     break;
-
+      
                 case 7:
-                    //boolean AsignarLibroAutorA(Autor autor,Libro libro)
-                    System.out.println("\nASIGNAR LIBRO EXISTENTE A AUTOR EXISTENTE");
-                    Autor autor4 = infoAutor();
-                    Libro libro4 = infoLibro();
-                    if(pantallaLibreria.controlBiblioteca.AsignarLibroAutorA(autor4, libro4)){
-                        System.out.println("Se asignado correctamente el libro");
-                        imprimirLibro(libro4);
-                        System.out.println("Al autor");
-                        imprimirAutor(autor4);
-                    }else{
-                        System.out.println("ERROR, no se logro asignar libro a autor");
-                    }
-                    break;
-                    
-                case 8:
                     //Autor BuscarAutor(int cedula)
                     System.out.println("\nBUSCAR AUTOR");
                     System.out.println("\nIngrese la cedula del autor que desea buscar");
@@ -151,7 +137,7 @@ public class PantallaLibreria {
                     }
                     break;
                     
-                case 9:
+                case 8:
                     //double CalcularCostosLibrosDeUnAutor(int cedula)
                     System.out.println("\nCOSTO TOTAL DE LIBROS DE UN AUTOR");
                     int cedula1;
@@ -164,30 +150,8 @@ public class PantallaLibreria {
                         System.out.println("ERROR, no se logro calcular el costo de los libros de  un autor");
                     }
                     break;
-                    
-                case 10:
-                    //ArrayList LibrosDeUnAutor(Autor autor)
-                    System.out.println("\nLIBROS DE UN AUTOR");
-                    Autor autor5= infoAutor();
-                    if(pantallaLibreria.controlBiblioteca.LibrosDeUnAutor(autor5) != null){
-                    imprimirListaLibros(pantallaLibreria.controlBiblioteca.LibrosDeUnAutor(autor5));
-                    }else{
-                        System.out.println("ERROR, no se encontro los libros del autor");
-                    }
-                    break;
-                    
-                case 11:
-                    //ArrayList AutoresDeUnLibro(Libro libro)
-                    System.out.println("\nAUTORES DE UN LIBRO");
-                    Libro libro6 = infoLibro();
-                    if(pantallaLibreria.controlBiblioteca.AutoresDeUnLibro(libro6) != null){
-                    imprimirListaAutores(pantallaLibreria.controlBiblioteca.AutoresDeUnLibro(libro6));
-                    }else{
-                        System.out.println("ERROR, no se encontro los autores del libro");
-                    }
-                    break;
-                    
-                case 12:
+                        
+                case 9:
                     //Autor AutorMasProductivo()
                     System.out.println("\nAUTOR MAS PRODUCTIVO");
                     if(pantallaLibreria.controlBiblioteca.AutorMasProductivo() != null){
@@ -198,20 +162,20 @@ public class PantallaLibreria {
                     }
                     break;
                     
-                case 13:
+                case 10:
                     //Autor MejorAutorDeUnLibro(Libro libro)
                     System.out.println("\nMEJOR AUTOR DE UN LIBRO");
                     System.out.println("\nIngrese el isbn del libro");
-                    Libro libro5 = infoLibro();
-                    if(pantallaLibreria.controlBiblioteca.MejorAutorDeUnLibro(libro5) != null){
+                    Libro libro6 = infoLibro();
+                    if(pantallaLibreria.controlBiblioteca.MejorAutorDeUnLibro(libro6) != null){
                         System.out.println("Mejor autor de un libro");
-                        imprimirAutor(pantallaLibreria.controlBiblioteca.MejorAutorDeUnLibro(libro5));
+                        imprimirAutor(pantallaLibreria.controlBiblioteca.MejorAutorDeUnLibro(libro6));
                     }else{
                         System.out.println("No se encontro el mejor autor de un libro");
                     }
                     break;
                     
-                case 14:
+                case 11:
                     //Autor AutorQueMasGana()
                     System.out.println("\nAUTOR QUE MAS GANA");
                     if(pantallaLibreria.controlBiblioteca.AutorQueMasGana() != null){
@@ -222,7 +186,7 @@ public class PantallaLibreria {
                     }
                     break; 
                     
-                case 15:
+                case 12:
                     System.out.println("HAS SALIDO EXITOSAMENTE");
                     break;
                     
@@ -230,7 +194,7 @@ public class PantallaLibreria {
                     System.out.println("ERROR, ingrese un dato valido");                       
                     break;
             }
-            if(opcion != 15){
+            if(opcion != 12){
             System.out.println("\nDesea ver el menu de nuevo s/n");
             seguir= sc.nextLine();
             System.out.println("\n");
@@ -239,7 +203,7 @@ public class PantallaLibreria {
             }
             }
          
-        }while(opcion!=15);
+        }while(opcion!=12);
     }
     
     public static int imprimirMenu(){
@@ -252,15 +216,12 @@ public class PantallaLibreria {
         System.out.println("\t4. Buscar libro");
         System.out.println("\t5. Asignar autor a libro");
         System.out.println("\t6. Costo total de todo los libros");
-        System.out.println("\t7. Asignar libro a autor");
-        System.out.println("\t8. Buscar Autor");
-        System.out.println("\t9. Costos total de libros de un autor");
-        System.out.println("\t10.Lista de libros de un autor");
-        System.out.println("\t11.Lista de autores de un libro");
-        System.out.println("\t12.Autor mas productivo");
-        System.out.println("\t13.Mejor autor de un libro");
-        System.out.println("\t14.Autor que mas gana");
-        System.out.println("\t15.Salir");        
+        System.out.println("\t7. Buscar Autor");
+        System.out.println("\t8. Costos total de libros de un autor");
+        System.out.println("\t9. Autor mas productivo");
+        System.out.println("\t10.Mejor autor de un libro");
+        System.out.println("\t11.Autor que mas gana");
+        System.out.println("\t12.Salir");        
         System.out.println("Opcion: ");
         eleccion= sc.nextInt();
         return eleccion;
@@ -301,23 +262,23 @@ public class PantallaLibreria {
     }
     
     public static void imprimirListaAutores(ArrayList<Autor> autores){
-        if(autores.isEmpty() == true){
+        if(autores == null){
             System.out.println("No hay autores aun");
         }else{
         System.out.println("AUTORES");
-        for(int i=0;i<autores.size();i++){
-            imprimirAutor(autores.get(i));
+        for(Autor autoraux : autores){
+            imprimirAutor(autoraux);
         }
         }
     }
     
     public static void imprimirListaLibros(ArrayList<Libro> libros){
-        if(libros.isEmpty() == true){
+        if(libros == null){
             System.out.println("No hay libros aun");
         }else{
         System.out.println("LIBROS");
-        for(int i=0;i<libros.size();i++){
-            imprimirLibro(libros.get(i));
+        for(Libro libroaux : libros){
+            imprimirLibro(libroaux);  
         }
         }
     }

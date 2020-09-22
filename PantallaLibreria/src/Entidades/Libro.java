@@ -18,6 +18,7 @@ public class Libro {
     private ArrayList<Autor> autores;
 
     public Libro() {
+        this.autores = new ArrayList<>();
     }
 
     public Libro(String isbn, String titulo, double costo) {
@@ -60,13 +61,19 @@ public class Libro {
     }
     
     public boolean AlreadyExist(Autor autor){
+     if(this.autores.size() != 0){
      for(int i=0;i<this.autores.size();i++){
-         if(this.autores.get(i).getCedula()==autor.getCedula()){
+         if(this.autores.get(i).getCedula() == autor.getCedula()){
              return true;
          }
      }
+     }
      return false;
     }  
+    
+    public void crearAutor(Autor autor){
+        autores.add(autor);
+    }
     
     
 }
